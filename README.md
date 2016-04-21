@@ -6,6 +6,7 @@ A todo list app for iOS and made by React Native.
 NavigatorIOS
 Modal
 Realm
+tcomb-form-native'
 wolfy87-eventemitter
 ```
 

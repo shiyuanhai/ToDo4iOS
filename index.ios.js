@@ -1,53 +1,46 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
 import React, {
   AppRegistry,
   Component,
-  StyleSheet,
-  Text,
+  NavigatorIOS,
   View
 } from 'react-native';
+import EventEmitter from 'wolfy87-eventemitter';
+import ListMain from './app/ListMain';
 
-class ToDo4iOS extends Component {
+var rightButtonHandler = new EventEmitter();
+
+class todolist extends Component {
+  constructor() {
+    super();
+    this._onRightButtonPress = this._onRightButtonPress.bind(this);
+  }
+  _onRightButtonPress() {
+    rightButtonHandler.emitEvent('addButtonPressed');
+  }
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
-        </Text>
+      <View style={{ flex: 1 }}>
+        <NavigatorIOS
+          ref="nav"
+          style={styles.navigator}
+          initialRoute={{
+            component: ListMain,
+            title: 'TODO',
+            passProps: { events: rightButtonHandler },
+          }}
+          rightButtonTitle="Add"
+          onRightButtonPress={this._onRightButtonPress}
+          tintColor="#000000"
+        />
       </View>
     );
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
+const styles = {
+  navigator: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
+};
 
-AppRegistry.registerComponent('ToDo4iOS', () => ToDo4iOS);
+AppRegistry.registerComponent('ToDo4iOS', () => todolist);
