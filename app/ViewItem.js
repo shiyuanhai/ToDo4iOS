@@ -8,7 +8,7 @@ class ViewItem extends Component{
   render() {
     return (
       <View style={styles.container}>
-        <Text>Static</Text>
+        <Text>Name: {this.props.itemData.name}</Text>
       </View>
     );
   }
@@ -17,8 +17,10 @@ class ViewItem extends Component{
 const styles = {
   container: {
     flex: 1,
-    top: 50,
+    top: 150,
+    alignItems: 'center',
+    justifyContent: 'space-between',
   }
 };
 
-exports default ViewItem;
+export default ViewItem;

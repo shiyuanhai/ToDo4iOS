@@ -45,7 +45,7 @@ class ListMain extends Component{
         <ListView
           enableEmptySections={true}
           dataSource={this.state.dataSource}
-          renderRow={(rowData) => <ListItem itemData={rowData}/>}
+          renderRow={(rowData) => <ListItem itemData={rowData} nav={this.props.navigator}/>}
           styles={styles.listview}
         />
       </View>

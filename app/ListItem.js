@@ -1,18 +1,31 @@
 import React, {
   Component,
   Text,
-  View
+  View,
+  TouchableOpacity
 } from 'react-native';
+import ViewItem from './ViewItem';
 
 class ListItem extends Component{
   constructor(props) {
     super(props);
+    this._onPress = this._onPress.bind(this);
+  }
+  _onPress() {
+    this.props.nav.push({
+      title: 'View',
+      component: ViewItem,
+      backButtonTitle: '',
+      passProps: {itemData: this.props.itemData},
+    });
   }
   render() {
     return (
-      <View style={styles.itemContainer}>
-        <Text>{this.props.itemData.name}</Text>
-      </View>
+      <TouchableOpacity onPress={this._onPress}>
+        <View style={styles.itemContainer}>
+          <Text>{this.props.itemData.name}</Text>
+        </View>
+      </TouchableOpacity>
     );
   }
 }
