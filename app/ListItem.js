@@ -17,6 +17,8 @@ class ListItem extends Component{
       component: ViewItem,
       backButtonTitle: '',
       passProps: {itemData: this.props.itemData},
+      rightButtonTitle: 'Edit',
+      onRightButtonPress: () => this.props.nav.pop(),
     });
   }
   render() {
